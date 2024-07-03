@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"strconv"
 
-	"gitlab.com/salamtm.messenger/slog"
+	slog "gitlab.com/GadamGurbanov/crmhazar-pkg-log"
 )
 
 type Middleware struct {

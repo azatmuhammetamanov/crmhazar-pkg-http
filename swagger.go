@@ -9,7 +9,7 @@ import (
 
 	"github.com/gorilla/mux"
 	httpSwagger "github.com/swaggo/http-swagger/v2"
-	"gitlab.com/salamtm.messenger/slog"
+	slog "gitlab.com/GadamGurbanov/crmhazar-pkg-log"
 )
 
 func InitSwaggerRoute(router *mux.Router, subRouter string) {

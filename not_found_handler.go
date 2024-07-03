@@ -3,7 +3,7 @@ package crmhazar_pkg_http
 import (
 	"context"
 	"github.com/gorilla/mux"
-	"gitlab.com/salamtm.messenger/slog"
+	slog "gitlab.com/GadamGurbanov/crmhazar-pkg-log"
 	"net/http"
 )
 
