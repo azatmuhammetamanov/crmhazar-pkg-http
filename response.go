@@ -7,6 +7,7 @@ import (
 
 var Result = &result{}
 var Success = newResult(http.StatusOK)
+var NoContent = newResult(http.StatusNoContent)
 var BadRequest = newResult(http.StatusBadRequest)
 var MissingParam = newResult(http.StatusUnprocessableEntity)
 var Conflict = newResult(http.StatusConflict)
