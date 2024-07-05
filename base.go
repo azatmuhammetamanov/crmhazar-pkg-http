@@ -18,9 +18,8 @@ type appBaseHandler func(w http.ResponseWriter, r *http.Request) Response
 type appAuthHandler func(w http.ResponseWriter, r *http.Request, claims AuthClaims) Response
 
 type AuthClaims struct {
-	Id         int64
-	DeviceId   int64
-	AppVersion string
+	Id    int
+	JobId int
 }
 
 func NewMiddleware(logger *slog.Logger, jwtKey string, limiter *RateLimiter) *Middleware {
@@ -68,11 +67,9 @@ func (middleware *Middleware) Auth(h appAuthHandler) http.HandlerFunc {
 			return
 		}
 
-		authClaims := AuthClaims{
-			AppVersion: fmt.Sprint(claims["app_version"]),
-		}
+		authClaims := AuthClaims{}
 
-		id, err := strconv.ParseInt(fmt.Sprint(claims["user_id"]), 10, 64)
+		id, err := strconv.Atoi(fmt.Sprint(claims["id"]))
 		if err != nil {
 			fmt.Println("2 err: ", err)
 
@@ -80,24 +77,16 @@ func (middleware *Middleware) Auth(h appAuthHandler) http.HandlerFunc {
 			return
 		}
 
-		deviceId, err := strconv.ParseInt(fmt.Sprint(claims["device_id"]), 10, 64)
+		jobId, err := strconv.Atoi(fmt.Sprint(claims["job_id"]))
 		if err != nil {
-			fmt.Println("3 err: ", err)
+			fmt.Println("2 err: ", err)
 
 			w.WriteHeader(http.StatusUnauthorized)
 			return
 		}
 
-		//allowed := middleware.limiter.Allow(fmt.Sprint(deviceId))
-		//
-		//if !allowed {
-		//	fmt.Println("from deviceID: ", deviceId, " blocked")
-		//	w.WriteHeader(http.StatusTooManyRequests)
-		//	return
-		//}
-
 		authClaims.Id = id
-		authClaims.DeviceId = deviceId
+		authClaims.JobId = jobId
 
 		result := h(w, r, authClaims)
 
