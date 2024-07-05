@@ -9,6 +9,7 @@ var Result = &result{}
 var Success = newResult(http.StatusOK)
 var BadRequest = newResult(http.StatusBadRequest)
 var MissingParam = newResult(http.StatusUnprocessableEntity)
+var Conflict = newResult(http.StatusConflict)
 var InternalServerError = newResult(http.StatusInternalServerError)
 
 type Response interface {
