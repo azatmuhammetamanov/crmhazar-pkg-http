@@ -12,7 +12,7 @@ var BadRequest = newResult(http.StatusBadRequest)
 var Conflict = newResult(http.StatusConflict)
 var Unauthorized = newResult(http.StatusUnauthorized)
 var Forbidden = newResult(http.StatusForbidden)
-var MissingParam = newResult(http.StatusUnprocessableEntity)
+var UnprocessableEntity = newResult(http.StatusUnprocessableEntity)
 var InternalServerError = newResult(http.StatusInternalServerError)
 
 type Response interface {
