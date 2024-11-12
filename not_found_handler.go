@@ -2,9 +2,10 @@ package crmhazar_pkg_http
 
 import (
 	"context"
-	"github.com/gorilla/mux"
-	slog "gitlab.com/GadamGurbanov/crmhazar-pkg-log"
 	"net/http"
+
+	slog "github.com/azatmuhammetamanov/crmhazar-pkg-log"
+	"github.com/gorilla/mux"
 )
 
 type handler struct {

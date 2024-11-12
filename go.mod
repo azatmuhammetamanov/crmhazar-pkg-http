@@ -1,17 +1,16 @@
-module github.com/azatmuhammetamanov/crmhazar-pkg-http.git
+module github.com/azatmuhammetamanov/crmhazar-pkg-http
 
 go 1.22.4
 
 require (
+	github.com/azatmuhammetamanov/crmhazar-pkg-log v0.0.0-20241112120116-72a550a49b41
 	github.com/golang-jwt/jwt v3.2.2+incompatible
 	github.com/gorilla/mux v1.8.1
 	github.com/swaggo/http-swagger/v2 v2.0.2
-	gitlab.com/GadamGurbanov/crmhazar-pkg-log v0.0.0-20240709104903-f2f5d877a0d1
 )
 
 require (
 	github.com/KyleBanks/depth v1.2.1 // indirect
-	github.com/azatmuhammetamanov/crmhazar-pkg-log v0.0.0-20241112120116-72a550a49b41 // indirect
 	github.com/go-openapi/jsonpointer v0.19.5 // indirect
 	github.com/go-openapi/jsonreference v0.20.0 // indirect
 	github.com/go-openapi/spec v0.20.6 // indirect
