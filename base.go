@@ -20,7 +20,7 @@ type appAuthHandler func(w http.ResponseWriter, r *http.Request, claims AuthClai
 type AuthClaims struct {
 	Id       int
 	JobId    int
-	BorderId int
+	BorderId *int
 }
 
 func NewMiddleware(logger *slog.Logger, jwtKey string, limiter *RateLimiter) *Middleware {
@@ -86,17 +86,21 @@ func (middleware *Middleware) Auth(h appAuthHandler) http.HandlerFunc {
 			return
 		}
 
-		borderId, err := strconv.Atoi(fmt.Sprint(claims["border_id"]))
-		if err != nil {
-			fmt.Println("2 err: ", err)
-
-			w.WriteHeader(http.StatusUnauthorized)
-			return
+		borderIdStr := claims["border_id"]
+		if borderIdStr == nil {
+			authClaims.BorderId = nil
+		} else {
+			borderId, err := strconv.Atoi(fmt.Sprint(borderIdStr))
+			if err != nil {
+				fmt.Println("border err 2: ", err)
+				w.WriteHeader(http.StatusUnauthorized)
+				return
+			}
+			authClaims.BorderId = &borderId
 		}
 
 		authClaims.Id = id
 		authClaims.JobId = jobId
-		authClaims.BorderId = borderId
 
 		result := h(w, r, authClaims)
 
